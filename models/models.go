@@ -3,6 +3,8 @@ package models
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+
 	"kalifun/ginblog/pkg/setting"
 	"log"
 )
@@ -53,4 +55,8 @@ func init() {
 	db.DB().SetMaxIdleConns(10)
 	//设置最大打开的连接数
 	db.DB().SetMaxOpenConns(100)
+}
+
+func CloseDB()  {
+	defer db.Close()
 }
